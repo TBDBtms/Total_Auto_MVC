@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui-v2.4.5/layui/layui.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div style="width:100%;float:left;background-color:#fcfcfc">
+        <div style="width:70%;float:right;">
+            <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc">
+                <li class="layui-nav-item"><a href="" style="color:black">欢迎登录:???</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">首页</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">我要买车</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">找客服</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">我的订单</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">热线电话:400-069-6540</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">退出登录</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户</a>
+                    <dl class="layui-nav-child">
+                        <!-- 二级菜单 -->
+                        <dd><a href="" style="color:black">修改密码</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="float:left">
+        @RenderBody()
+    </div>
+</body>
+</html>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //…
+    });
+</script>
