@@ -5,8 +5,65 @@
 }
 
 <h1></h1>
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/layui-v2.4.5/layui/layui.js"></script>
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+<script>
+    $(function () {
+        ShowCard();
+        ShowCXInfo();
+    })
+    function ShowCX(id) {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarSeriesList",
+            data: { id: id },
+            dataType: "json",
+            Type: "get",
+            success: function (data) {
+                console.log(data);
+                $("#cx").empty();
+                for (var i = 0; i < data.length; i++) {
+                    var htmls =
+                        "<li class='layui-nav-item'>" +
+                        "<a href='#' style='color:black'>" + data[i].carserName + "</a></li>";
+                    $("#cx").append(htmls);
+                }
+            }
+        })
+    }
+    function ShowCXInfo() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/GetCards",
+            dataType: "json",
+            type: "get",
+            success: function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var htmls =
+                        "<li class='layui-nav-item'>" +
+                        "<a href='#' style='color:black'>" + data[i].carserName + "</a></li>";
+                    $("#cx").append(htmls);
+                }
+            }
+        })
+    }
+    function ShowCard() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrandsList",
+            dataType: "json",
+            Type: "get",
+            success: function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var htmls =
+                        "<li class='layui-nav-item'>" +
+                        "<a href='#' style='color:black' onclick='ShowCX(" + data[i].brandId+")'>" + data[i].brandName + "</a></li>";
+                    $("#pp").append(htmls);
+                }
+            }
+        })
+    }
+</script>
 <div style="margin-left:360px;">
     <div style="width:1200px;height:130px;">
         <img src="~/homePhone/天下二维码.png" />
@@ -19,7 +76,7 @@
     </div>
     <div class="layui-table" style="width:100%;height:60px;float:left;">
         <div style="height:60px;float:left;">
-            <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
+            <ul id="pp" class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
                 <li class="layui-nav-item">
                     <span style="color:black;background-color:#fcfcfc">品牌</span>
                 </li>
@@ -28,12 +85,13 @@
                         <img src="~/homePhone/不限.png" />
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>
     <div style="width:100%;float:left;">
         <div style="height:60px;float:left;">
-            <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
+            <ul id="cx" class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
                 <li class="layui-nav-item">
                     <span style="color:black;background-color:#fcfcfc">车系</span>
                 </li>
