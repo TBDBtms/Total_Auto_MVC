@@ -4,7 +4,6 @@
     Layout = "~/Views/Home/_Layout.cshtml";
 }
 
-<h1></h1>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/layui-v2.4.5/layui/layui.js"></script>
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
@@ -44,6 +43,7 @@
                         "<a href='#' style='color:black'>" + data[i].carserName + "</a></li>";
                     $("#cx").append(htmls);
                 }
+                ShowCardsInfo();
             }
         })
     }
@@ -75,6 +75,20 @@
                         "<li class='layui-nav-item' > " +
                         "<a href='#' style='color:black' onclick='CXShowInfo(" + this.brandId + ")'>" + this.brandName + "</a></li>";
                     $("#cx").append(cxinfo);
+                })
+            }
+        })
+    }
+    function ShowCardsInfo() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CardInfoCofigList",
+            dataType: "json",
+            type: "get",
+            success: function (data) {
+                $("#cx").each(function (data) {
+                    var cxinfo =
+                        "";
+                    $("#cx").append(cxinfo); //车辆显示数据
                 })
             }
         })
@@ -293,122 +307,9 @@
             </select>
         </div>
     </div>
-    <div style="width:100%;">
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
+    <div style="width:100%;" id="car">
+        @*<div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
 
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-top:5px;margin-left:5px;"></div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-top:5px;margin-left:5px;"></div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-top:5px;margin-left:5px;"></div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-top:5px;margin-left:5px;"></div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
-        <div style="width:1280px;height:310px;">
-            <div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:green;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:yellow;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-            <div style="width:305px;height:307px;background-color:blue;float:left;margin-left:5px;margin-top:5px;">
-
-            </div>
-        </div>
+        </div>*@
     </div>
 </div>
