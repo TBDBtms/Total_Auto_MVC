@@ -57,9 +57,25 @@
                 for (var i = 0; i < data.length; i++) {
                     var htmls =
                         "<li class='layui-nav-item'>" +
-                        "<a href='#' style='color:black' onclick='ShowCX(" + data[i].brandId+")'>" + data[i].brandName + "</a></li>";
+                        "<a href='#' style='color:black' onclick='ShowCX(" + data[i].brandId + ")'>" + data[i].brandName + "</a></li>";
                     $("#pp").append(htmls);
                 }
+                ShowCardTypeInfos();
+            }
+        })
+    }
+    function ShowCardTypeInfos() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/GetCarSeries",
+            dataType: "json",
+            type: "get",
+            success: function (data) {
+                $("#cx").each(function (data) {
+                    var cxinfo =
+                        "<li class='layui-nav-item' > " +
+                        "<a href='#' style='color:black' onclick='CXShowInfo(" + this.brandId + ")'>" + this.brandName + "</a></li>";
+                    $("#cx").append(cxinfo);
+                })
             }
         })
     }
