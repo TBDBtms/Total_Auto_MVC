@@ -46,7 +46,7 @@ namespace Total_Auto_MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Hzx}/{action=Index}/{id?}");
             });
         }
     }
