@@ -9,8 +9,34 @@
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
 <script>
     $(function () {
-        ShowCard();
+        $("#show").click(function () {
+            pageindex = 1;
+            ShowInfo();
+        })
+
+        layui.use('form', function () {
+            form = layui.form;
+            var layData = ['form', 'laydate'];
+            layui.use(layData, function () {
+                var laydate = layui.laydate;
+                laydate.render({
+                    elem: '#stime'
+                });
+                laydate.render({
+                    elem: '#etime'
+                });
+            });
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+
+        });
+        ShowPP();
         ShowCXInfo();
+        ShowCardTypeInfos();
+        ShowCardsInfo();
     })
     function ShowCX(id) {
         $.ajax({
@@ -43,11 +69,10 @@
                         "<a href='#' style='color:black'>" + data[i].carserName + "</a></li>";
                     $("#cx").append(htmls);
                 }
-                ShowCardsInfo();
             }
         })
     }
-    function ShowCard() {
+    function ShowPP() {
         $.ajax({
             url: "http://localhost:11267/api/JcyCards/BrandsList",
             dataType: "json",
@@ -60,7 +85,6 @@
                         "<a href='#' style='color:black' onclick='ShowCX(" + data[i].brandId + ")'>" + data[i].brandName + "</a></li>";
                     $("#pp").append(htmls);
                 }
-                ShowCardTypeInfos();
             }
         })
     }
@@ -70,12 +94,12 @@
             dataType: "json",
             type: "get",
             success: function (data) {
-                $("#cx").each(function (data) {
+                for (var i = 0; i < 12; i++) {
                     var cxinfo =
                         "<li class='layui-nav-item' > " +
-                        "<a href='#' style='color:black' onclick='CXShowInfo(" + this.brandId + ")'>" + this.brandName + "</a></li>";
+                        "<a href='#' style='color:black' onclick='CXShowInfo(" + data[i].brandId + ")'>" + data[i].carserName + "</a></li>";
                     $("#cx").append(cxinfo);
-                })
+                }
             }
         })
     }
@@ -84,11 +108,18 @@
             url: "http://localhost:11267/api/JcyCards/CardInfoCofigList",
             dataType: "json",
             type: "get",
+            data: { agecard: 0, bsx: 0, cx: 0, kms: 0, pl: 0, pfbz: 0, zws: 0, rylx: 0, color: 0, cardszd: 0, qdlx: 0, countryb: 0, lightCoig: 0 },
             success: function (data) {
-                $("#cx").each(function (data) {
-                    var cxinfo =
-                        "";
-                    $("#cx").append(cxinfo); //车辆显示数据
+                $(data).each(function (data) {
+                    console.log(data);
+                    var card =
+                        "<div style='width: 310px; height: 307px; float: left; margin - left: 5px; margin - top: 5px;'>" +
+                        "<div><img src ='" + this.photoCar + "' style='width:300px;height:220px;'/></div>" +
+                        "<div>" + this.cardName + "</div>" +
+                        "<div>" + this.yearAge + "年|" + this.kmNum + "万公里|" + this.cardHelp + "</div>" +
+                        "<div>" + this.price + "万" + "</div>" +
+                        "</div>";
+                    $(".car").append(card); //车辆显示数据
                 })
             }
         })
@@ -102,6 +133,9 @@
         <div></div>
         <div style="margin-left:850px;">
             <input type="text" style="width:280px;height:40px;" name="name" value="" />
+            <button type="button" class="layui-btn" style="background-color:white;color:black;height:45px;width:20px;" onclick="ShowIndex()" id="show">
+                <i class="layui-icon">&#xe615;</i>
+            </button>
         </div>
     </div>
     <div class="layui-table" style="width:100%;height:60px;float:left;">
@@ -115,7 +149,6 @@
                         <img src="~/homePhone/不限.png" />
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -192,76 +225,154 @@
             </ul>
         </div>
     </div>
-    <div style="width:100%;float:left;">
-        <div style="height:60px;float:left;">
+    <div style="width:1200px;float:left;">
+        <div style="float:left;">
             <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
                 <li class="layui-nav-item">
-                    <span style="color:black;background-color:#fcfcfc">更多</span>
+                    <span style="color:black;background-color:#fcfcfc">价格</span>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="cl">
-                        <option value="0">车龄</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:25px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="cl">
+                                    <option value="0">车龄</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="bsx">
-                        <option value="0">变速箱</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="bsx">
+                                    <option value="0">变速箱</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="cx">
-                        <option value="0">车型</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="cx">
+                                    <option value="0">车型</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="lc">
-                        <option value="0">里程</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="lc">
+                                    <option value="0">里程</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="pl">
-                        <option value="0">排量</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="pl">
+                                    <option value="0">排量</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="pfbz">
-                        <option value="0">排放标准</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="pfbz">
+                                    <option value="0">排放标准</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="zws">
-                        <option value="0">座位数</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="zws">
+                                    <option value="0">座位数</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="ry">
-                        <option value="0">燃油类型</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="ry">
+                                    <option value="0">燃油类型</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="colors">
-                        <option value="0">颜色</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:53px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="colors">
+                                    <option value="0">颜色</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="cp">
-                        <option value="0">车牌所在地</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="cp">
+                                    <option value="0">车牌所在地</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="qdlx">
-                        <option value="0">驱动类型</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="qdlx">
+                                    <option value="0">驱动类型</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="gb">
-                        <option value="0">国别</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="gb">
+                                    <option value="0">国别</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="layui-nav-item">
-                    <select id="ld">
-                        <option value="0">亮点配置</option>
-                    </select>
+                    <form class="layui-form">
+                        <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
+                            <div style="width:120px">
+                                <select lay-filter="aihao" id="ld">
+                                    <option value="0">亮点配置</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -307,9 +418,7 @@
             </select>
         </div>
     </div>
-    <div style="width:100%;" id="car">
-        @*<div style="width:305px;height:307px;background-color:red;float:left;margin-left:5px;margin-top:5px;">
+    <div style="width:100%;" class="car">
 
-        </div>*@
     </div>
 </div>
