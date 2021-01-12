@@ -9,11 +9,6 @@
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
 <script>
     $(function () {
-        $("#show").click(function () {
-            pageindex = 1;
-            ShowInfo();
-        })
-
         layui.use('form', function () {
             form = layui.form;
             var layData = ['form', 'laydate'];
@@ -104,14 +99,16 @@
         })
     }
     function ShowCardsInfo() {
+        var name = $("#name").val();
         $.ajax({
             url: "http://localhost:11267/api/JcyCards/CardInfoCofigList",
             dataType: "json",
             type: "get",
-            data: { agecard: 0, bsx: 0, cx: 0, kms: 0, pl: 0, pfbz: 0, zws: 0, rylx: 0, color: 0, cardszd: 0, qdlx: 0, countryb: 0, lightCoig: 0 },
+            data: { name: name, agecard: 0, bsx: 0, cx: 0, kms: 0, pl: 0, pfbz: 0, zws: 0, rylx: 0, color: 0, cardszd: 0, qdlx: 0, countryb: 0, lightCoig: 0 },
             success: function (data) {
+                console.log(data);
+                $(".car").empty();
                 $(data).each(function (data) {
-                    console.log(data);
                     var card =
                         "<div style='width: 310px; height: 307px; float: left; margin - left: 5px; margin - top: 5px;'>" +
                         "<div><img src ='" + this.photoCar + "' style='width:300px;height:220px;'/></div>" +
@@ -132,8 +129,8 @@
     <div>
         <div></div>
         <div style="margin-left:850px;">
-            <input type="text" style="width:280px;height:40px;" name="name" value="" />
-            <button type="button" class="layui-btn" style="background-color:white;color:black;height:45px;width:20px;" onclick="ShowIndex()" id="show">
+            <input type="text" style="width:280px;height:40px;" id="name" value="" />
+            <button type="button" class="layui-btn" style="background-color:white;color:black;height:45px;width:50px;margin-left:-5px;border:1px solid;margin-top:-1px;" onclick="ShowCardsInfo()" id="show">
                 <i class="layui-icon">&#xe615;</i>
             </button>
         </div>
