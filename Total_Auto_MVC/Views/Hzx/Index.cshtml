@@ -1,0 +1,301 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>天下车直卖网</title>
+</head>
+<body>
+    <div class="box2" style="margin-top:-20px;">
+        <div class="title">
+            <h1>天下严选车 <span>保修、包换、包退</span></h1>
+            <div class="find">
+                <input type="text" placeholder="请输入" /><button>搜索</button>
+
+            </div>
+        </div>
+        <div class="title_body">
+            <div class="left">
+                <h2><a>我要买车</a></h2>
+                <div class="left_down">
+
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/audi.png" />
+                        </dt>
+                        <dd>奥迪</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/dazhong.png" />
+                        </dt>
+                        <dd>大众</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/buick.png" />
+                        </dt>
+                        <dd>别克</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/toyota.png" />
+                        </dt>
+                        <dd>丰田</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/ford.png" />
+                        </dt>
+                        <dd>福特</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/richan.png" />
+                        </dt>
+                        <dd>日产</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/bmw.png" />
+                        </dt>
+                        <dd>宝马</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/benz.png" />
+                        </dt>
+                        <dd>奔驰</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/chevrolet.png" />
+                        </dt>
+                        <dd>雪佛兰</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/jili.png" />
+                        </dt>
+                        <dd>吉利</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/hafu.png" />
+                        </dt>
+                        <dd>哈佛</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+
+                        </dt>
+                        <dd>全部</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            3-5万
+                        </dt>
+                        <dd>5-7万</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            7-9万
+                        </dt>
+                        <dd>9-12万</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            12-16万
+                        </dt>
+                        <dd>16-20万</dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            suv
+                        </dt>
+                        <dd>更多</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="right">
+                <h2><a>我要卖车</a> 天下保卖，当天拿钱，全程服务</h2>
+                <div class="right_down">
+                    <div class="right_find">
+                        <input type="text" placeholder="请输入车名" id="CarName" /><button>搜索</button>
+                    </div>
+                    <div class="right_find">
+                        <input type="text" placeholder="请输入品牌名" id="TypeName" /><button>搜索</button>
+                    </div>
+                    <div class="right_find">
+                        <input type="text" placeholder="请输入发动机型号" id="motorName" /><button>搜索</button>
+                    </div>
+                    <div class="btns" style="margin-top:-5px;">
+                        <button>爱车估价</button>
+                        <button>包卖服务</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:-60px;">
+            <div>
+                <img style="text-align:center" src="~/images/1.png" id="z1" />
+                <img style="text-align:center" src="~/images/2.png" id="z2" />
+                <img style="text-align:center" src="~/images/3.png" id="z3" />
+                <img style="text-align:center" src="~/images/4.png" id="z4" />
+                <img style="text-align:center" src="~/images/9.png" id="z5" />
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="box" style="margin-left:550px;margin-top:450px; width:1200px;">
+        <h2>优质车展示</h2>
+        <div style="width: 2000px;"id="boxdiv">
+            <ul>
+                <li style="display: block;" title="奔驰">
+                    <a href="#">
+                        <img src="https://image1.guazistatic.com/qn181115182144dd23714992db4b74ab5498346951daaf.png?imageView2/2" />
+                    </a>
+                </li>
+                <li title="大众">
+                    <a href="#">
+                        <img src="https://image1.guazistatic.com/qn18111518284074d9b6733ecd02121b5c73ff2855fb9b.png?imageView2/2" />
+                    </a>
+                </li>
+                <li title="奥迪">
+                    <a href="#">
+                        <img src="https://image1.guazistatic.com/qn18111518560687ecfe2622d5e06c6d01a2a6dd20ddeb.png?imageView2/2" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    //首次加载并且只执行一次
+    $(document).ready(function () {
+        $("#z1").attr("src", "/images/5.png");
+    })
+
+    $("#z1").mouseover(function () {
+        $("#z1").attr("src", "/images/5.png")
+        $("#z5").attr("src", "/images/9.png")
+    })
+    $("#z1").mouseout(function () {
+
+        zhq();
+    })
+
+    $("#z2").mouseover(function () {
+        $("#z2").attr("src", "/images/6.png")
+        $("#z5").attr("src", "/images/10.png")
+    })
+    $("#z2").mouseout(function () {
+        $("#z2").attr("src", "/images/2.png")
+        zhq();
+    })
+
+    $("#z3").mouseover(function () {
+        $("#z3").attr("src", "/images/7.png")
+        $("#z5").attr("src", "/images/11.png")
+    })
+    $("#z3").mouseout(function () {
+        $("#z3").attr("src", "/images/3.png")
+        zhq();
+    })
+
+    $("#z4").mouseover(function () {
+        $("#z4").attr("src", "/images/8.png")
+        $("#z5").attr("src", "/images/12.png")
+    })
+    $("#z4").mouseout(function () {
+        $("#z4").attr("src", "/images/4.png")
+        zhq();
+    })
+
+    $("#z5").mouseout(function () {
+        var img = $("#z5").attr("src");
+        if (img == "/images/12.png") {
+            $("#z4").attr("src", "/images/4.png");
+        }
+
+        if (img == "/images/11.png") {
+            $("#z3").attr("src", "/images/3.png");
+        }
+
+        if (img == "/images/10.png") {
+            $("#z2").attr("src", "/images/2.png");
+        }
+
+        if (img == "/images/9.png") {
+            $("#z1").attr("src", "/images/1.png");
+        }
+    })
+    function zhq() {
+        var img = $("#z5").attr("src");
+        if (img == "/images/9.png") {
+            $("#z1").attr("src", "/images/5.png")
+        } else {
+            $("#z1").attr("src", "/images/1.png")
+        }
+
+        if (img == "/images/10.png") {
+            $("#z2").attr("src", "/images/6.png")
+        } else {
+            $("#z2").attr("src", "/images/2.png")
+        }
+
+        if (img == "/images/11.png") {
+            $("#z3").attr("src", "/images/7.png")
+        } else {
+            $("#z3").attr("src", "/images/3.png")
+        }
+
+        if (img == "/images/12.png") {
+            $("#z4").attr("src", "/images/8.png")
+        } else {
+            $("#z4").attr("src", "/images/4.png")
+        }
+    }
+    $(document).ready(function () {
+        new ZouMa().Start();
+    });
+    function ZouMa() {
+
+        this.maxLength = 3; //最低显示数
+        this.Timer = 2000;//计时器间隔时间
+        this.Ul = $(".box ul");
+
+        var handId;//计时器id
+        var self = this;
+        this.Start = function () {
+            if (self.Ul.children().length < this.maxLength) {
+                self.Ul.append(self.Ul.children().clone());
+            }
+            handId = setInterval(self.Play, self.Timer);
+        }
+        this.Play = function () {
+            var img = self.Ul.children().eq(0);
+            var left = img.children().eq(0).width();
+            img.animate({ "marginLeft": (-1 * left) + "px" }, 600, function () {
+                //appendTo函数是实现走马灯一直不间断播放的秘诀。
+                //目前网上看到的很多走马灯，走到最后一张的时候，会立马闪回第一张，而不是继续从后往前推进，即是没有明白该函数的作用的原因
+                $(this).css("margin-left", "auto").appendTo(self.Ul);
+            });
+        }
+    }
+
+</script>

@@ -1,0 +1,165 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.box {
+    width: 800px;
+    height: 200px;
+    margin-top: 100px;
+    margin-left: 100px;
+    overflow: hidden;
+
+}
+
+    .box img {
+        border-style: none;
+        height: 200px;
+    }
+
+    .box ul {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+    }
+
+        .box ul li {
+            float: left;
+        }
+
+html, body,box {
+    width:100%;
+    height:100%;
+}
+.box2 {
+    width: 100%;
+    height: 681px;
+    background: url("https://image.guazistatic.com/gz01190923/17/53/9c2d7bfaed19709bbbb9cb305e1ddffe.jpg") no-repeat center top;
+}
+
+    .box2 .title {
+        width: 1180px;
+        margin: 20px auto;
+        text-align: center;
+    }
+.title h1 {
+    color:yellow;
+}
+    .title h1 span {
+        color:#fff;
+        margin-left:30px;
+    }
+
+    .find {
+           margin:20px 0;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 20px;
+    }
+
+    .find input {
+        width: 80%;
+        height: 100%;
+        border:0px;
+        outline:0;
+    border-radius:20px 0 0 20px;
+    font-size:20px;
+    text-indent:2em;
+    }
+
+    .find button {
+        width: 20%;
+        height: 100%;
+        border: 0px;
+        background: green;
+        outline: 0;
+        border-radius:0 20px 20px 0;
+    }
+
+.title_body {
+    width:1180px;
+    height:80%;
+    background:#fff;
+    margin:0 auto;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+}
+
+    .title_body .left {
+        width:50%;
+        height:100%;
+        padding:20px;
+    }
+.left_down {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+    .left_down dl {
+        margin:20px 10px;
+        height:auto;
+        display:flex;
+        align-items:center;
+    }
+        .left_down dl dt {
+        }
+        .left_down dl dd {
+            margin-left:20px;
+        }
+
+            .title_body .right {
+                width: 50%;
+                height: 100%;
+                padding: 20px;
+            }
+.right_find {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid green;
+}
+
+  
+.right_find input {
+        width: 77%;
+        border: 0;
+        outline: 0;
+        border-radius: 10px 0 0 10px;
+    }
+
+
+    .right_find button {
+        width: 20%;
+        border: 0;
+        outline: 0;
+        border-radius: 0 10px 10px 0 ;
+        background:green;
+        color:#fff;
+    }
+
+
+.btns {
+    width:80%;
+    height:50px;
+    display:flex;
+    justify-content:space-between;
+    margin:100px auto;
+}
+.btns button {
+    width:47%;
+    background:green;
+    color:#fff;
+    outline:0;
+    border:0
+}
