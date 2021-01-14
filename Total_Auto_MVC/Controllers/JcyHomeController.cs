@@ -12,8 +12,9 @@ namespace Total_Auto_MVC.Controllers
         {
             return View();
         }
-        public IActionResult ShowCard()
+        public IActionResult ShowCard(int id=0)
         {
+            ViewBag.id = id;
             return View();
         }
     }
