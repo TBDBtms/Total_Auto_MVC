@@ -1,15 +1,11 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "天下车直卖网";
     Layout = "~/Views/Home/_Layout.cshtml";
 }
-
-
 <!DOCTYPE html>
-
 <html>
 <head>
-
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -20,7 +16,7 @@
         <div class="title">
             <h1>天下严选车 <span>保修、包换、包退</span></h1>
             <div class="find">
-                <input type="text" placeholder="请输入" /><button>搜索</button>
+                <input type="text" placeholder="请输入关键字|例如 君越 2.4L" id="Guanjian" /><button onclick="Sou()">搜索</button>
 
             </div>
         </div>
@@ -33,97 +29,97 @@
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/audi.png" />
                         </dt>
-                        <dd>奥迪</dd>
+                        <dd><a onclick="aodi()">奥迪</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/dazhong.png" />
                         </dt>
-                        <dd>大众</dd>
+                        <dd><a onclick="dazhong()">大众</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/buick.png" />
                         </dt>
-                        <dd>别克</dd>
+                        <dd><a onclick="bieke()">别克</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/toyota.png" />
                         </dt>
-                        <dd>丰田</dd>
+                        <dd><a  onclick="fentian()">丰田</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/ford.png" />
                         </dt>
-                        <dd>福特</dd>
+                        <dd><a onclick="fute()">福特</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/richan.png" />
                         </dt>
-                        <dd>日产</dd>
+                        <dd><a onclick="richan()">日产</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/bmw.png" />
                         </dt>
-                        <dd>宝马</dd>
+                        <dd><a onclick="bmw()">宝马</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/benz.png" />
                         </dt>
-                        <dd>奔驰</dd>
+                        <dd><a onclick="benchi()">奔驰</a></dd>
                     </dl>
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/chevrolet.png" />
                         </dt>
-                        <dd>雪佛兰</dd>
-                    </dl>
+                        <dd><a onclick="xfl()">雪佛兰</a></dd>
+                    </dl>&nbsp; &nbsp;
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/jili.png" />
                         </dt>
-                        <dd>吉利</dd>
-                    </dl>
+                        <dd><a onclick="jili()">吉利</a></dd>
+                    </dl>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <dl>
                         <dt>
                             <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/hafu.png" />
                         </dt>
-                        <dd>哈佛</dd>
-                    </dl>
+                        <dd><a oncancel="hafu()">哈弗</a></dd>
+                    </dl>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <dl>
                         <dt>
 
                         </dt>
-                        <dd>全部</dd>
+                        <dd><a href="">全部品牌</a></dd>
                     </dl>
                     <dl>
-                        <dt>
-                            3-5万
+                        <dt style="font-weight:bold">
+                            <a>3-5万</a>
                         </dt>
-                        <dd>5-7万</dd>
+                        <dd style="font-weight:bold"><a>4-7万</a></dd>
                     </dl>
                     <dl>
-                        <dt>
-                            7-9万
+                        <dt style="font-weight:bold">
+                            <a> 7-9万</a>
                         </dt>
-                        <dd>9-12万</dd>
+                        <dd style="font-weight:bold"><a>9-12万</a></dd>
                     </dl>
                     <dl>
-                        <dt>
-                            12-16万
+                        <dt style="font-weight:bold">
+                            <a>12-16万</a>
                         </dt>
-                        <dd>16-20万</dd>
+                        <dd style="font-weight:bold"><a href="#">16-20万</a></dd>
                     </dl>
                     <dl>
-                        <dt>
-                            suv
+                        <dt style="font-weight:bold">
+                            <a>SUV</a>
                         </dt>
-                        <dd>更多</dd>
+                        <dd style="font-weight:bold"><a>更多</a></dd>
                     </dl>
                 </div>
             </div>
@@ -137,7 +133,7 @@
                         <input type="text" placeholder="请输入品牌名" id="TypeName" /><button>搜索</button>
                     </div>
                     <div class="right_find">
-                        <input type="text" placeholder="请输入发动机型号" id="motorName" /><button>搜索</button>
+                        <input type="text" placeholder="请输入颜色" id="motorName" /><button>搜索</button>
                     </div>
                     <div class="btns" style="margin-top:-5px;">
                         <button>爱车估价</button>
@@ -146,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <div style="text-align:center;margin-top:-60px;">
+        <div style="text-align:center;margin-top:-15px;">
             <div>
                 <img style="text-align:center" src="~/images/1.png" id="z1" />
                 <img style="text-align:center" src="~/images/2.png" id="z2" />
@@ -160,7 +156,7 @@
 
     </div>
 
-    <div class="box" style="margin-left:550px;margin-top:450px; width:1200px;">
+    <div class="box" style="margin-left:350px;margin-top:450px; width:1200px;">
         <h2>优质车展示</h2>
         <div style="width: 2000px;"id="boxdiv">
             <ul>
@@ -188,6 +184,7 @@
     //首次加载并且只执行一次
     $(document).ready(function () {
         $("#z1").attr("src", "/images/5.png");
+        $("#First").addClass("layui-this");
     })
 
     $("#z1").mouseover(function () {
@@ -297,5 +294,64 @@
             });
         }
     }
+    function Sou()
+    {
+        var Guanjian = $("#Guanjian").val();
+        location.href = "";
 
+
+    }
+    function aodi()
+    {
+        location.href = ""+"奥迪";
+
+    }
+    function dazhong()
+    {
+
+        location.href = "" + "大众";
+    }
+    function bieke()
+    {
+        location.href = "" + "别克";
+    }
+    function fentian()
+    {
+
+        location.href = "" + "丰田";
+
+
+    }
+    function fute()
+    {
+        location.href = "" + "福特";
+    }
+    function richan()
+    {
+
+        location.href = "" + "日产";
+    }
+    function bmw()
+    {
+
+        location.href = "" + "宝马";
+    }
+    function benchi()
+    {
+        location.href = "" + "奔驰";
+    }
+    function xfl()
+    {
+        location.href = "" + "雪佛兰";
+
+    }
+    function jili()
+    {
+        location.href = "" + "吉利";
+    }
+    function hafu()
+    {
+
+        location.href = "" + "哈弗";
+    }
 </script>

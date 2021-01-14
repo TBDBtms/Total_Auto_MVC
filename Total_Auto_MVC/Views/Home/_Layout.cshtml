@@ -2,7 +2,6 @@
 
 <html>
 <head>
-   
     <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <script src="~/layui-v2.4.5/layui/layui.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -12,9 +11,9 @@
     <div style="width:100%;float:left;background-color:#fcfcfc">
         <div style="width:70%;float:right;">
             <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc">
-                <li class="layui-nav-item"><a href="" style="color:black"><img src="~/images/QQ图片20210111103405.png" /></a></li>
+                <li class="layui-nav-item"><a href="" style="color:black"><img src="~/images/QQ图片20210111103405.png" id="imgss" /></a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">欢迎登录:???</a></li>
-                <li class="layui-nav-item"><a href="javascript:location.href='/Hzx/Index'" style="color:black">首页</a></li>
+                <li id="First" class="layui-nav-item"><a href="javascript:location.href='/Hzx/Index';" style="color:black" id="">首页</a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">我要买车</a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">找客服</a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">我的订单</a></li>
@@ -41,5 +40,13 @@
         var element = layui.element;
 
         //…
+    });
+    $(document).on('click', '#imgss', function () {
+        layer.open({
+            type: 2,
+            area: ['700px', '750px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '/Hzx/GIndex',
+        });
     });
 </script>
