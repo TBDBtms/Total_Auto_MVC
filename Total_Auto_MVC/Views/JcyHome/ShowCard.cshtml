@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "ShowCard";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/layui-v2.4.5/layui/layui.js"></script>
+<link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+<script>
+    $(function () {
+        ShowCard();
+    })
+    function ShowCard(id) {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/ShowCardId",
+            dataType: "json",
+            type: "get",
+            data: { id: @ViewBag.id},
+            success: function (data) {
+                console.log(data);
+                var names = data.cardName;
+                var displacement = data.displacementName;
+                var gearbox = data.gearboxName;
+                var price = data.price
+                $("#cardname").text(names);
+                $("#pl").text(displacement);
+                $("#bsx").text(gearbox);
+                $("#prices").text(price);
+            }
+        })
+    }
+</script>
+<div>
+    <div style="margin-left: 1410px; width: 200px; height: 50px;">
+        <label>车源号:天下旗舰店 <span></span></label>
+    </div>
+    <div style="margin-left:360px;width:1250px;">
+        <input type="hidden" id="id" value="@ViewBag.id" />
+        <div style="width:605px;height:520px;float:left;margin-left:50px;">
+            <div style="width:605px;height:420px;background-color:red">
+                @*img1*@
+            </div>
+            <div style="width:605px;height:80px;margin-top:5px;background-color:yellow">
+                @*img2*@
+            </div>
+        </div>
+        <div style="width:575px;height:518px;float:right">
+            <div><h3><span id="cardname" style="font-size:25px;"></span></h3></div>
+            <div style="margin-top:15px;margin-left:15px;text-align:center">
+                <span id="pl" style="font-size:18px;"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span id="bsx" style="font-size:18px;"></span><br />
+                &nbsp;<span  style="font-size:10px;">排量</span>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span  style="font-size:10px;">变速箱</span>
+            </div>
+            <div>
+                <div style="margin-top:15px;">
+                    <span>全款价</span><br />
+                    <span id="prices" style="font-size:25px;"></span><label style="font-size:25px;">万</label>
+                </div>
+            </div>
+            <div style="margin-top:20px;">
+                <div>
+                    <div style="width:565px;height:120px;background-color:#F1F9EF">
+                        <div style="float:left">
+                            <img src="~/images/sanc.png" style="margin-top:3px;" />
+                        </div>
+                        <div style="float:right;margin-top:15px;">
+                            <div>
+                                <div style="margin-left:5px;float:left;width:270px">
+                                    <label style="color:chartreuse;font-size:20px;">分期付款开回家</label>
+                                </div>
+                                <div style="float:right;width:130px;">
+                                    <a href="#">分期协议></a>
+                                </div>
+                            </div>
+                            <hr style="margin-top:10px;width:450px;" />
+                            <div style="text-align:center">
+                                <img src="~/images/fq.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:565px;height:120px;background-color:beige;margin-top:20px;">
+                        <div style="height:45px;">
+                            <div style="float:left;margin-left:20px;margin-top:20px;">
+                                <label style="margin-top:15px;">售后保障</label>
+                            </div>
+                            <div style="float:left;margin-left:400px;margin-top:20px;">
+                                <a href="#">查看详情></a>
+                            </div>
+                        </div>
+                        <div style="margin-top:15px;margin-left:20px;">
+                            <div>
+                                <img src="~/images/退.png" />30天无退换&emsp;&emsp;&emsp;
+                                <img src="~/images/修.png" />30天全面保修
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+            <div style="margin-top:25px;text-align:center">
+                <input type="button" name="name" value="我要分期" class="layui-btn" style="width:175px;height:50px;" />
+                <input type="button" name="name" value="购买此车" class="layui-btn" style="width:175px;height:50px;margin-left:10px;" />
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 400px;">
+        
+    </div>
+</div>
+
