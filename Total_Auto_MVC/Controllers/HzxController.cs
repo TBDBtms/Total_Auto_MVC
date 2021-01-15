@@ -17,6 +17,11 @@ namespace Total_Auto_MVC.Controllers
         {
             return View();
         }
+        public IActionResult Email()
+        {
+            return View();
+        }
+
     }
 
 }
