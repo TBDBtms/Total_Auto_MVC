@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="~/layui-v2.4.5/layui/layui.js"></script>
+    <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -25,102 +27,17 @@
                 <h2><a>我要买车</a></h2>
                 <div class="left_down">
 
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/audi.png" />
-                        </dt>
-                        <dd><a onclick="aodi()">奥迪</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/dazhong.png" />
-                        </dt>
-                        <dd><a onclick="dazhong()">大众</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/buick.png" />
-                        </dt>
-                        <dd><a onclick="bieke()">别克</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/toyota.png" />
-                        </dt>
-                        <dd><a  onclick="fentian()">丰田</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/ford.png" />
-                        </dt>
-                        <dd><a onclick="fute()">福特</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/richan.png" />
-                        </dt>
-                        <dd><a onclick="richan()">日产</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/bmw.png" />
-                        </dt>
-                        <dd><a onclick="bmw()">宝马</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/benz.png" />
-                        </dt>
-                        <dd><a onclick="benchi()">奔驰</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/chevrolet.png" />
-                        </dt>
-                        <dd><a onclick="xfl()">雪佛兰</a></dd>
-                    </dl>&nbsp; &nbsp;
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/jili.png" />
-                        </dt>
-                        <dd><a onclick="jili()">吉利</a></dd>
-                    </dl>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/hafu.png" />
-                        </dt>
-                        <dd><a oncancel="hafu()">哈弗</a></dd>
-                    </dl>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <dl>
-                        <dt>
+                    <ul id="pp" class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
+                        <li class="layui-nav-item">
+                            <span style="color:black;background-color:#fcfcfc">品牌</span>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="" style="color:black">
+                                <img src="~/homePhone/不限.png" />
+                            </a>
+                        </li>
+                    </ul>
 
-                        </dt>
-                        <dd><a href="">全部品牌</a></dd>
-                    </dl>
-                    <dl>
-                        <dt style="font-weight:bold">
-                            <a>3-5万</a>
-                        </dt>
-                        <dd style="font-weight:bold"><a>4-7万</a></dd>
-                    </dl>
-                    <dl>
-                        <dt style="font-weight:bold">
-                            <a> 7-9万</a>
-                        </dt>
-                        <dd style="font-weight:bold"><a>9-12万</a></dd>
-                    </dl>
-                    <dl>
-                        <dt style="font-weight:bold">
-                            <a>12-16万</a>
-                        </dt>
-                        <dd style="font-weight:bold"><a href="#">16-20万</a></dd>
-                    </dl>
-                    <dl>
-                        <dt style="font-weight:bold">
-                            <a>SUV</a>
-                        </dt>
-                        <dd style="font-weight:bold"><a>更多</a></dd>
-                    </dl>
                 </div>
             </div>
             <div class="right">
@@ -183,8 +100,28 @@
 <script>
     //首次加载并且只执行一次
     $(document).ready(function () {
+        layui.use('form', function () {
+            form = layui.form;
+            var layData = ['form', 'laydate'];
+            layui.use(layData, function () {
+                var laydate = layui.laydate;
+                laydate.render({
+                    elem: '#stime'
+                });
+                laydate.render({
+                    elem: '#etime'
+                });
+            });
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+            ShowPP();
+
+        });
         $("#z1").attr("src", "/images/5.png");
-        $("#First").addClass("layui-this");
+        ShowPP();
     })
 
     $("#z1").mouseover(function () {
@@ -294,64 +231,27 @@
             });
         }
     }
-    function Sou()
-    {
-        var Guanjian = $("#Guanjian").val();
-        location.href = "";
-
-
-    }
-    function aodi()
-    {
-        location.href = ""+"奥迪";
-
-    }
-    function dazhong()
-    {
-
-        location.href = "" + "大众";
-    }
-    function bieke()
-    {
-        location.href = "" + "别克";
-    }
-    function fentian()
-    {
-
-        location.href = "" + "丰田";
-
-
-    }
-    function fute()
-    {
-        location.href = "" + "福特";
-    }
-    function richan()
-    {
-
-        location.href = "" + "日产";
-    }
-    function bmw()
-    {
-
-        location.href = "" + "宝马";
-    }
-    function benchi()
-    {
-        location.href = "" + "奔驰";
-    }
-    function xfl()
-    {
-        location.href = "" + "雪佛兰";
-
-    }
-    function jili()
-    {
-        location.href = "" + "吉利";
+    function ShowPP() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrandsList",
+            dataType: "json",
+            Type: "get",
+            success: function (data) {
+                console.log(data);
+                $("#pp").empty();
+                $(data).each(function () {
+                    var brandid = this.brandId;
+                    var htmls =
+                        "<li class='layui-nav-item'>" +
+                        "<a href='#' style='color:black' id='a' onclick='ShowCX(" + brandid + ")'>" + this.brandName + "</a></li>";
+                    $("#pp").append(htmls);
+                })
+            }
+        })
     }
     function hafu()
     {
 
-        location.href = "" + "哈弗";
-    }
+
+
 </script>
