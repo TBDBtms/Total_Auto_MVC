@@ -22,11 +22,22 @@
                 var names = data.cardName;
                 var displacement = data.displacementName;
                 var gearbox = data.gearboxName;
-                var price = data.price
+                var price = data.price;
                 $("#cardname").text(names);
                 $("#pl").text(displacement);
                 $("#bsx").text(gearbox);
                 $("#prices").text(price);
+                $("#littlePhoto").empty();
+                $("#photo").empty();
+                $(data).each(function () {
+                    var htmls = "<a href='#'><img src='" + this.topPhoto + "' style='width:120px;height:80px;' /></a>" +
+                        "<a href='#'><img src='" + this.leftPhoto + "' style='width:120px;height:80px;' /></a>" +
+                        "<a href='#'><img src='" + this.rightPhoto + "' style='width:120px;height:80px;' /></a>" +
+                        "<a href='#'><img src='" + this.downPhoto + "' style='width:120px;height:80px;' /></a>" +
+                        "<a href='#'><img src='" + this.qphoto + "' style='width:120px;height:80px;' /></a>";
+                    $("#littlePhoto").append(htmls);
+                    $("#photo").append("<a href='#'><img src ='" + this.photoCar + "' style='width:605px;height:420px;' /></a>");
+                })
             }
         })
     }
@@ -38,19 +49,23 @@
     <div style="margin-left:360px;width:1250px;">
         <input type="hidden" id="id" value="@ViewBag.id" />
         <div style="width:605px;height:520px;float:left;margin-left:50px;">
-            <div style="width:605px;height:420px;background-color:red">
-                @*img1*@
+            <div style="width:605px;height:420px;">
+                <div id="photo">
+
+                </div>
             </div>
-            <div style="width:605px;height:80px;margin-top:5px;background-color:yellow">
-                @*img2*@
+            <div style="width:605px;height:80px;margin-top:5px;">
+                <div id="littlePhoto">
+
+                </div>
             </div>
         </div>
         <div style="width:575px;height:518px;float:right">
             <div><h3><span id="cardname" style="font-size:25px;"></span></h3></div>
             <div style="margin-top:15px;margin-left:15px;text-align:center">
                 <span id="pl" style="font-size:18px;"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span id="bsx" style="font-size:18px;"></span><br />
-                &nbsp;<span  style="font-size:10px;">排量</span>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span  style="font-size:10px;">变速箱</span>
+                &nbsp;<span style="font-size:10px;">排量</span>&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="font-size:10px;">变速箱</span>
             </div>
             <div>
                 <div style="margin-top:15px;">
@@ -105,7 +120,7 @@
         </div>
     </div>
     <div style="margin-left: 400px;">
-        
+
     </div>
 </div>
 

@@ -9,7 +9,8 @@
 
 <html>
 <head>
-
+    <script src="~/layui-v2.4.5/layui/layui.js"></script>
+    <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -29,102 +30,17 @@
                 <h2><a>我要买车</a></h2>
                 <div class="left_down">
 
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/audi.png" />
-                        </dt>
-                        <dd>奥迪</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/dazhong.png" />
-                        </dt>
-                        <dd>大众</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/buick.png" />
-                        </dt>
-                        <dd>别克</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/toyota.png" />
-                        </dt>
-                        <dd>丰田</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/ford.png" />
-                        </dt>
-                        <dd>福特</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/richan.png" />
-                        </dt>
-                        <dd>日产</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/bmw.png" />
-                        </dt>
-                        <dd>宝马</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/benz.png" />
-                        </dt>
-                        <dd>奔驰</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/chevrolet.png" />
-                        </dt>
-                        <dd>雪佛兰</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/jili.png" />
-                        </dt>
-                        <dd>吉利</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <img src="https://sta.guazistatic.com/static/c2c/web/che-logo/hafu.png" />
-                        </dt>
-                        <dd>哈佛</dd>
-                    </dl>
-                    <dl>
-                        <dt>
+                    <ul id="pp" class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
+                        <li class="layui-nav-item">
+                            <span style="color:black;background-color:#fcfcfc">品牌</span>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="" style="color:black">
+                                <img src="~/homePhone/不限.png" />
+                            </a>
+                        </li>
+                    </ul>
 
-                        </dt>
-                        <dd>全部</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            3-5万
-                        </dt>
-                        <dd>5-7万</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            7-9万
-                        </dt>
-                        <dd>9-12万</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            12-16万
-                        </dt>
-                        <dd>16-20万</dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            suv
-                        </dt>
-                        <dd>更多</dd>
-                    </dl>
                 </div>
             </div>
             <div class="right">
@@ -187,7 +103,28 @@
 <script>
     //首次加载并且只执行一次
     $(document).ready(function () {
+        layui.use('form', function () {
+            form = layui.form;
+            var layData = ['form', 'laydate'];
+            layui.use(layData, function () {
+                var laydate = layui.laydate;
+                laydate.render({
+                    elem: '#stime'
+                });
+                laydate.render({
+                    elem: '#etime'
+                });
+            });
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+            ShowPP();
+
+        });
         $("#z1").attr("src", "/images/5.png");
+        ShowPP();
     })
 
     $("#z1").mouseover(function () {
@@ -297,5 +234,25 @@
             });
         }
     }
+    function ShowPP() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrandsList",
+            dataType: "json",
+            Type: "get",
+            success: function (data) {
+                console.log(data);
+                $("#pp").empty();
+                $(data).each(function () {
+                    var brandid = this.brandId;
+                    var htmls =
+                        "<li class='layui-nav-item'>" +
+                        "<a href='#' style='color:black' id='a' onclick='ShowCX(" + brandid + ")'>" + this.brandName + "</a></li>";
+                    $("#pp").append(htmls);
+                })
+            }
+        })
+    }
+
+
 
 </script>
