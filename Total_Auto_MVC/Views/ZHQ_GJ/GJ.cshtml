@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewData["Title"] = "免费估价";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/layui-v2.4.5/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
+<script src="~/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+<link href="~/style.css" rel="stylesheet" />
+<style>
+    #di {
+        background: url("/zhqimage/QQ图片20210111160123.png");
+        width: 1903px;
+        height: 547px;
+    }
+
+    #sp1 {
+        color: #fff;
+        position: absolute;
+        top: 241px;
+        right: 849px;
+        font-size: 35px
+    }
+
+    #sp2 {
+        color: #fff;
+        position: absolute;
+        top: 241px;
+        right: 511px;
+        font-size: 35px
+    }
+
+    #d2 {
+        width: 393px;
+        height: 448px;
+        position: absolute;
+        top: 108px;
+        left: 358px;
+        background-color: #fff
+    }
+
+    #p1 {
+        position: absolute;
+        height: 42px;
+        top: 33px;
+        left: 38px;
+        width: 300px;
+        border: 1px solid gainsboro;
+    }
+
+    #p2 {
+        position: absolute;
+        height: 42px;
+        top: 105px;
+        left: 38px;
+        width: 300px;
+        border: 1px solid gainsboro;
+    }
+
+    #p3 {
+        position: absolute;
+        height: 42px;
+        top: 178px;
+        left: 38px;
+        width: 300px;
+        border: 1px solid gainsboro;
+    }
+
+    #p4 {
+        position: absolute;
+        height: 42px;
+        top: 247px;
+        left: 38px;
+        width: 300px;
+        border: 1px solid gainsboro;
+    }
+
+    #p5 {
+        position: absolute;
+        height: 42px;
+        top: 318px;
+        left: 38px;
+        width: 300px;
+        border: 1px solid gainsboro;
+    }
+
+    #b1 {
+        background: #ffdf00;
+        position: absolute;
+        top: 381px;
+        width: 300px;
+        height: 50px;
+        left: 38px;
+        border: 1px solid gainsboro;
+    }
+
+    .numCX {
+        color: yellow;
+        position: absolute;
+        top: 227px;
+        right: 696px;
+        font-size: 47px;
+        margin-left: 250px;
+    }
+</style>
+<div id="di">
+    <div id="d2">
+        <input type="text" readonly="readonly" placeholder="请选者品牌" id="p1" class="zh" />
+        <input type="text" readonly="readonly" placeholder="请选者车型" id="p2" class="zh" />
+        <input type="text" readonly="readonly" placeholder="请选者款式" id="p3" class="zh" />
+        <input type="date" placeholder="请选者上牌日期" id="p4" class="zh" />
+        <input type="text" placeholder="行驶里程(以万为单位)" id="p5" class="zh" />
+        <button type="button" id="b1"><span id="m1" style="font-size:25px;color:#333">免费估价</span></button>
+    </div>
+    <span id="sp1">您是第</span><span class="numCount"><span class="numCX" data-startVal="0" data-speed="4" data-decimals="0" id="mumC1">0</span></span><span id="sp2">位估价用户</span>
+</div>
+<img src="~/zhqimage/QQ图片20210111160139.png" />
+<script src="~/count.js"></script>
+<script type="text/javascript">
+    var countCX
+    var countCXArr = [];
+    $(function () {
+        $("#mziche").addClass("layui-this");
+    
+        //$("#mumC1").attr("data-endVal", "6000")
+
+        $.ajax({
+            url: "http://localhost:11267/api/ZHQ_GJCount/GetCount",
+            data: {},
+            type: "get",
+            dataType: "json",
+            success: function (d) {
+                $("#mumC1").attr("data-endVal", d.gjCount);
+                lop();
+            }
+        })
+
+
+    });
+
+
+    function lop() {
+        $('.numCount').each(function (i, dom) {
+            if (countCXArr[i] && countCXArr[i] === true) {
+                return;
+            }
+            var sT;
+            var ncTop;
+            sT = $(window).scrollTop();
+            ncTop = $(dom).offset().top;
+            var id, decimals, startVal, endVal, duration;
+            if (sT > ncTop - $(window).height() && sT < ncTop) {
+                $(dom).find('.numCX').each(function () {
+                    id = $(this).attr('id');
+                    decimals = $(this).attr('data-decimals'),
+                        startVal = $(this).attr('data-startVal'),
+                        endVal = $(this).attr('data-endVal'),
+                        duration = $(this).attr('data-speed');
+                    new CountUp(id, startVal, endVal, decimals, duration, {
+                        useEasing: true,//效果
+                        separator: ''//数字分隔符
+                    }).start();// target：目标元素id, startVal：你想要开始的值, endVal：你想要到达的值, decimals：小数位数，默认值为0, duration：动画持续时间为秒，默认值为2, options：选项的可选对象
+                    countCXArr[i] = true;
+                })
+            }
+        })
+        $(window).on("scroll", function () {
+            lop();
+        })
+    }
+
+    $(".zh").focus(function () {
+        $(this).css("border", "1px solid deepskyblue");
+    })
+
+    $(".zh").blur(function () {
+        $(this).css("border", "1px solid gainsboro");
+    })
+
+    $("#b1").mouseover(function () {
+        $("#b1").css("cursor", "pointer");  //鼠标光标变小手
+    })
+    $("#b1").mouseout(function () {
+        $("#b1").css("cursor", "default");//鼠标光标变默认
+    })
+
+    //$(document).on('click', '#p1', function () {
+    //    layer.open({
+    //        type: 2,
+    //        area: ['700px', '750px'],
+    //        shadeClose: true, //点击遮罩关闭
+    //        content: '/ZHQ_GJ/pp',
+    //    });
+    //});
+
+    $("#p1").click(function () {
+        layer.open({
+            type: 2,
+            area: ['300px', '350px'],
+            shadeClose: true,
+            content: '/ZHQ_GJ/pp',
+            end: function (index, layero) {
+                var t = sessionStorage.getItem("ppname");
+                $("#p1").val(t);
+               
+            }
+        });
+    })
+    $("#p2").click(function () {
+        layer.open({
+            type: 2,
+            area: ['300px', '350px'],
+            shadeClose: true,
+            content: '/ZHQ_GJ/cx',
+            end: function (index, layero) {
+                var t = sessionStorage.getItem("cxname");
+                $("#p2").val(t);
+            }
+        });
+    })
+    $("#p3").click(function () {
+        layer.open({
+            type: 2,
+            area: ['300px', '350px'],
+            shadeClose: true,
+            content: '/ZHQ_GJ/ks',
+            end: function (index, layero) {
+                var t = sessionStorage.getItem("ksname");
+                $("#p3").val(t);
+            }
+        });
+    })
+    //let index = parent.layer.getFrameIndex(window.name);
+    //parent.layer.close(index);
+
+    $("#b1").click(function () {
+        var lc = $("#p5").val();
+        sessionStorage.setItem("lc", lc);
+        var time = $("#p4").val();
+        sessionStorage.setItem("time", time);
+
+        $.ajax({
+            url: "http://localhost:11267/api/ZHQ_GJCount/UpdCount",
+            data: {},
+            type: "get",
+            dataType: "json",
+            success: function (d) {
+                if (d > 0) {
+                    location.href = '/ZHQ_GJ/GJXX';
+                }
+            }
+        })
+    })
+</script>

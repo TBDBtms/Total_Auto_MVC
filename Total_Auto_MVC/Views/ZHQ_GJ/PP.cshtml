@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/layui-v2.4.5/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
+    <script src="~/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>PP</title>
+</head>
+<body>
+    <div id="p">
+
+    </div>
+    <input type="button" value="确定" id="btnQD" />
+    <input type="button" value="取消" id="btnQX" />
+</body>
+</html>
+<script>
+    //$("#p").click(function () {
+    //     let index = parent.layer.getFrameIndex(window.name);
+    //parent.layer.close(index);
+    //})
+
+    $(function () {
+        init();
+    })
+
+    function init() {
+        $.ajax({
+            url: "http://localhost:11267/api/ZHQ_GJCount/GetBrand",
+            data: {},
+            type: "get",
+            dataType: "json",
+            success: function (d) {
+                $(d).each(function () {
+                    $("#p").append("<input type='radio' value='" + this.zhqBrandId + "' name='c'/><span id=" + this.zhqBrandId+">" + this.zhqBrandName + "</span>&nbsp;&nbsp;")
+                })
+            }
+        })
+    }
+
+    $("#btnQX").click(function () {
+    let index = parent.layer.getFrameIndex(window.name);
+    parent.layer.close(index);
+    })
+    $("#btnQD").click(function () {
+        //alert('1323')
+        var id = $("[name=c]:checked").val();
+        sessionStorage.setItem("id", id);
+        var ppname = $("#" + id + "").text();
+        sessionStorage.setItem("ppname", ppname);
+        let index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+</script>

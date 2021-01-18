@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "估价详细";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+<style>
+    #mg {
+        margin-top: 32px;
+        margin-left: 467px
+    }
+    #mg1 {
+        margin-left:23%;
+         padding-top:65px
+    }
+</style>
+<img src="~/zhqimage/横条.PNG" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<div style="width:100%;height:224px;background-color:#ffffff">
+    <img src="~/zhqimage/奥迪.PNG" id="mg" />
+    <span id="sp1" style="font-size:25px"></span>
+</div>
+<img src="~/zhqimage/横条.PNG" />
+<img src="~/12313.PNG" id="mg1"/>
+<script>
+    $(function () {
+        var ppname = sessionStorage.getItem("ppname");
+        var cxname = sessionStorage.getItem("cxname");
+        var ksname = sessionStorage.getItem("ksname");
+        var lc = sessionStorage.getItem("lc");
+        var time = sessionStorage.getItem("time");
+        $("#sp1").text(ppname + " " + cxname + "  上牌日期:  " + time + "  行程里数:  " + lc+"(万里)");
+
+    })
+</script>
