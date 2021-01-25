@@ -179,9 +179,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#pfbz").empty();
+                $("#zws").empty();
                 $(data).each(function () {
-                    $("#pfbz").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#zws").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
                 })
             }
         })
@@ -211,9 +211,73 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#color").empty();
+                $("#colors").empty();
                 $(data).each(function () {
-                    $("#color").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#colors").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //车牌所在地
+    function ShowCarNum() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarnumlocationList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#cp").empty();
+                $(data).each(function () {
+                    $("#cp").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //驱动类型
+    function ShowDriveType() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/DriveTypeList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#qdlx").empty();
+                $(data).each(function () {
+                    $("#qdlx").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //国别
+    function ShowCountryb() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CountryDistinctList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#gb").empty();
+                $(data).each(function () {
+                    $("#gb").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //亮点配置
+    function ShowLight() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrightConfigList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#ld").empty();
+                $(data).each(function () {
+                    $("#ld").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
                 })
             }
         })
