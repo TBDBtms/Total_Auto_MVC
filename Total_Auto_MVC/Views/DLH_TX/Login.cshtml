@@ -10,24 +10,11 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="User Login page" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
-    <!--bootstrap-->
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/assets/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- text fonts -->
-    <!--<link href="~/assets/fonts/fonts.googleapis.com.css" rel="stylesheet" />-->
-    <!-- ace styles -->
+
     <link href="~/assets/css/ace.min.css" rel="stylesheet" />
-    <!--[if lte IE 9]-->
-    <!--<link href="~/assets/css/ace-part2.min.css" rel="stylesheet" />-->
-    <!--[endif]-->
-    <!--<link href="~/assets/css/ace-rtl.min.css" rel="stylesheet" />-->
-    <!--[if lte IE 9]-->
-    <!--<link href="~/assets/css/ace-ie.min.css" rel="stylesheet" />-->
-    <!--[endif]-->
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]-->
-    @*<script src="~/assets/js/html5shiv.min.js"></script>
-        <script src="~/assets/js/respond.min.js"></script>*@
+
     <title>登录</title>
 
 
@@ -306,24 +293,21 @@
                                             返回登录
                                         </a>
                                     </div>
-                                </div><!-- /.widget-body -->
-                            </div><!-- /.signup-box -->
-                        </div><!-- /.position-relative -->
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.main-content -->
-    </div><!-- /.main-container -->
-    <!-- basic scripts -->
-    <!--[if !IE]> -->
-
-    <script src="~/assets/js/jquery.2.1.1.min.js"></script>
-    <!-- <![endif]-->
+                </div>
+            </div>
+        </div>
+    </div>
    
     
-    <!-- <![endif]-->
+
+    <script src="~/assets/js/jquery.2.1.1.min.js"></script>
+
     
     <![endif]-->
     <script type="text/javascript">
@@ -349,7 +333,7 @@
 </body>
 </html>
 <script src="~/js/jquery.js"></script>
-<script src="~/js/jquery.base64.js"></script>
+
 <script>
     function Login1(phone,value) {
         var phone1 = $("#phoneLogin").val();
@@ -377,34 +361,39 @@
 
     function Register() {
         
+        var u = {};
+        u.UserPhone = $("#phoneRegister").val();
+        u.UserName = $("#nameRegister").val();
+
+        u.UserAge = $("[name=sex]:checked").val();
+
+        u.UserPwd = $("#PwdRegister").val();
 
         var UserPhone = $("#phoneRegister").val();
-        var UserName = $("#nameRegister").val();
 
-        var pwdjm = $("#PwdRegister").val();
+        var UserName = $("#nameRegister").val();
 
         var UserAge = $("[name=sex]:checked").val();
 
-        var UserPwd = $.base64.encode(pwdjm);
+        var UserPwd = $("#PwdRegister").val();
 
-        var u = { UserPhone, UserName, UserPwd, UserAge};
+
 
 
         var JRegister = $("[name=ddd]:checked").val();
         var PhoneModel = $("#phoneRegister").val();
         
         var pwd2 = $("#pwdQRegister").val();
-        var uname = $("#nameRegister").val();
         var reg = /^[\u4E00-\u9FA5]{2,4}$/;
         var regs = /^[0-9]{6}$/;
         var regiphone = /^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
 
-        if (!reg.test(uname)) {
+        if (!reg.test(UserName)) {
             alert("姓名只能是字符");
             return;
         }
        
-        if (pwd2 != pwdjm) {
+        if (pwd2 != UserPwd) {
             alert("两次密码输入不正确，请检查密码是否正确");
             return false; 
         }
@@ -420,8 +409,8 @@
         $.ajax({
             url: "http://localhost:11267/api/Total_Auto_DLH/AddUser",
             type: "post",
-            dataType: "json",
             data: u,
+            dataType: "json",       
             success: function (d) {
                 if (d > 0) {
                     alert("注册成功");
@@ -432,10 +421,6 @@
         });
 
     }
-    
-
-
-    
 </script>
 
 
