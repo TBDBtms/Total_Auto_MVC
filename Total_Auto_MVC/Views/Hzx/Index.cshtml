@@ -1,12 +1,9 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "天下车直卖网";
     Layout = "~/Views/Home/_Layout.cshtml";
 }
-
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <script src="~/layui-v2.4.5/layui/layui.js"></script>
@@ -21,7 +18,7 @@
         <div class="title">
             <h1>天下严选车 <span>保修、包换、包退</span></h1>
             <div class="find">
-                <input type="text" placeholder="请输入" /><button>搜索</button>
+                <input type="text" placeholder="请输入关键字|例如 君越 2.4L" id="Guanjian" /><button onclick="Sou()">搜索</button>
 
             </div>
         </div>
@@ -29,7 +26,6 @@
             <div class="left">
                 <h2><a>我要买车</a></h2>
                 <div class="left_down">
-
                     <ul id="pp" class="layui-nav" lay-filter="" style="background-color: #fcfcfc;border:solid;border:1px;border-color:black">
                         <li class="layui-nav-item">
                             <span style="color:black;background-color:#fcfcfc">品牌</span>
@@ -40,7 +36,6 @@
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </div>
             <div class="right">
@@ -53,22 +48,21 @@
                         <input type="text" placeholder="请输入品牌名" id="TypeName" /><button>搜索</button>
                     </div>
                     <div class="right_find">
-                        <input type="text" placeholder="请输入发动机型号" id="motorName" /><button>搜索</button>
+                        <input type="text" placeholder="请输入颜色" id="motorName" /><button>搜索</button>
                     </div>
                     <div class="btns" style="margin-top:-5px;">
-                        <button>爱车估价</button>
-                        <button>包卖服务</button>
+                        <button>爱车估价,包卖服务</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div style="text-align:center;margin-top:-60px;">
+        <div style="text-align:center;margin-top:-15px;">
             <div>
-                <img style="text-align:center" src="~/images/1.png" id="z1" />
-                <img style="text-align:center" src="~/images/2.png" id="z2" />
-                <img style="text-align:center" src="~/images/3.png" id="z3" />
-                <img style="text-align:center" src="~/images/4.png" id="z4" />
-                <img style="text-align:center" src="~/images/9.png" id="z5" />
+                <img style="text-align:center" onclick="Tiao()" src="~/images/1.png" id="z1" />
+                <img style="text-align:center" onclick="Tiao()" src="~/images/2.png" id="z2" />
+                <img style="text-align:center" onclick="Tiao()" src="~/images/3.png" id="z3" />
+                <img style="text-align:center" onclick="Tiao()" src="~/images/4.png" id="z4" />
+                <img style="text-align:center" onclick="Tiao()" src="~/images/9.png" id="z5" />
             </div>
 
 
@@ -76,27 +70,31 @@
 
     </div>
 
-    <div class="box" style="margin-left:550px;margin-top:450px; width:1200px;">
+    <div class="box" style="margin-left:600px;margin-top:450px; width:1200px;">
         <h2>优质车展示</h2>
-        <div style="width: 2000px;"id="boxdiv">
+        <div style="width: 2000px;" id="boxdiv">
             <ul>
                 <li style="display: block;" title="奔驰">
                     <a href="#">
-                        <img src="https://image1.guazistatic.com/qn181115182144dd23714992db4b74ab5498346951daaf.png?imageView2/2" />
+                        <img onclick="Tiao()" src="https://image1.guazistatic.com/qn181115182144dd23714992db4b74ab5498346951daaf.png?imageView2/2" />
                     </a>
                 </li>
                 <li title="大众">
                     <a href="#">
-                        <img src="https://image1.guazistatic.com/qn18111518284074d9b6733ecd02121b5c73ff2855fb9b.png?imageView2/2" />
+                        <img onclick="Tiao()" src="https://image1.guazistatic.com/qn18111518284074d9b6733ecd02121b5c73ff2855fb9b.png?imageView2/2" />
                     </a>
                 </li>
                 <li title="奥迪">
                     <a href="#">
-                        <img src="https://image1.guazistatic.com/qn18111518560687ecfe2622d5e06c6d01a2a6dd20ddeb.png?imageView2/2" />
+                        <img onclick="Tiao()" src="https://image1.guazistatic.com/qn18111518560687ecfe2622d5e06c6d01a2a6dd20ddeb.png?imageView2/2" />
                     </a>
                 </li>
             </ul>
         </div>
+
+    </div> 
+    <div class="btns" style="float:left;width:80px;margin-top:-1400px;">
+        <button onclick="location.href='/Hzx/Email'">联系我们</button>
     </div>
 </body>
 </html>
@@ -120,11 +118,9 @@
                 layer.msg(JSON.stringify(data.field));
                 return false;
             });
-            ShowPP();
-
         });
         $("#z1").attr("src", "/images/5.png");
-        ShowPP();
+  
     })
 
     $("#z1").mouseover(function () {
@@ -209,6 +205,7 @@
     }
     $(document).ready(function () {
         new ZouMa().Start();
+        ShowPP();
     });
     function ZouMa() {
 
@@ -252,7 +249,9 @@
             }
         })
     }
+    function Tiao()
+    {
+        location.href = "/JcyHome/Index";
 
-
-
+    }
 </script>

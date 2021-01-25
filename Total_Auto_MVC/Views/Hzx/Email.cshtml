@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Email</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+   
+</head>
+<body>
+    <div align="center">
+        <table class="table table-bordered" style="width:50%;">
+            <tr>
+                <th>标题:</th>
+                <td><input id="txt_Title" type="text" /></td>
+            </tr>
+            <tr>
+                <th>收件人:</th>
+                <td><input id="txt_RevMail" placeholder="" type="password" /></td>
+            </tr>
+            <tr>
+                <th>正文:</th>
+                <td><textarea id="ta_Content" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="btn_Send" type="button" class="btn btn-primary" value="发送邮件" onclick="SendMails()" /></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $().ready(function () {
+        $("#txt_RevMail").val("2190315456@qq.com");
+        $("#txt_Title").val("建议");
+    });
+    function SendMails() {
+
+        var obj = {
+            RecMails: $("#txt_RevMail").val(),
+            Title: $("#txt_Title").val(),
+            BodyContent: $("#ta_Content").val(),
+        };
+        $.ajax({
+            url: "http://localhost:11267/api/Email/SendMailMethod",
+            dataType: "json",
+            type: "post",
+            data: obj,
+            contentType: "application/x-www-form-urlencoded",
+            success: function (data) {
+                if (data > 0) {
+                    alert("发送成功!");
+                    if (confirm("是否继续发送"))
+                    {
+                        window.location.reload();
+                    }
+                    else {
+                        location.href = "/Hzx/Index";
+                    }
+                }
+            }
+        })
+    }
+
+</script>

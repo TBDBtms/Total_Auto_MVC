@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace Total_Auto_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,14 +41,14 @@ namespace Total_Auto_MVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Hzx}/{action=Index}/{id?}");
+                    pattern: "{controller=DLH_TX}/{action=Login}/{id?}");
             });
         }
     }
