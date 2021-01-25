@@ -239,6 +239,18 @@
         var time = $("#p4").val();
         sessionStorage.setItem("time", time);
 
+        if ($("#p1").val() == "") {
+            alert('品牌不能为空');
+            return;
+        }
+        if ($("#p2").val() == "") {
+            alert('型号不能为空');
+            return;
+        }
+        if ($("#p3").val() == "") {
+            alert('款式不能为空');
+            return;
+        }
         $.ajax({
             url: "http://localhost:11267/api/ZHQ_GJCount/UpdCount",
             data: {},
