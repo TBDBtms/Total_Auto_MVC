@@ -32,6 +32,7 @@
         ShowCardTypeInfos();
         ShowCardsInfo();
         ShowPrice();
+        ShowBSX();
     })
     //车系列表根据品牌id
     function ShowCX(id) {
@@ -89,6 +90,197 @@
             }
         })
     }
+    //变速箱
+    function ShowBSX() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/GearboxList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                $("#bsx").empty();
+                $(data).each(function () {
+                    $("#bsx").append("<option value="+this.gearboxId+">"+this.gearboxName+"</option>");
+                })
+            }
+        })
+    }
+    //车系
+    function Showcxs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarsVisonList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#cxs").empty();
+                $(data).each(function () {
+                    $("#cxs").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //里程
+    function Showlcs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/MileageList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#lc").empty();
+                $(data).each(function () {
+                    $("#lc").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //排量
+    function Showpls() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/MileageList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#pl").empty();
+                $(data).each(function () {
+                    $("#pl").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //排放
+    function Showpfs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/DischargenormList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#pfbz").empty();
+                $(data).each(function () {
+                    $("#pfbz").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //座位数
+    function Showzws() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/SeatnumList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#zws").empty();
+                $(data).each(function () {
+                    $("#zws").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //燃油类型
+    function Showrys() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/FuelTypeList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#ry").empty();
+                $(data).each(function () {
+                    $("#ry").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //颜色
+    function Showcolors() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/ColorsList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#colors").empty();
+                $(data).each(function () {
+                    $("#colors").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //车牌所在地
+    function ShowCarNum() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarnumlocationList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#cp").empty();
+                $(data).each(function () {
+                    $("#cp").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //驱动类型
+    function ShowDriveType() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/DriveTypeList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#qdlx").empty();
+                $(data).each(function () {
+                    $("#qdlx").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //国别
+    function ShowCountryb() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CountryDistinctList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#gb").empty();
+                $(data).each(function () {
+                    $("#gb").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //亮点配置
+    function ShowLight() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrightConfigList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#ld").empty();
+                $(data).each(function () {
+                    $("#ld").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
     //品牌信息初始化随机显示数据
     function ShowCardTypeInfos() {
         $.ajax({
@@ -102,7 +294,7 @@
                     var cxinfo =
                         "<li class='layui-nav-item' > " +
                         "<a href='#' style='color:black' onclick='ShowCardsInfo(" + brandid + ")'>" + this.carserName + "</a></li>";
-                    $("#cx").append(cxinfo);
+                    $("#cx").append(cxinfo); 
                 })
             }
         })
@@ -246,7 +438,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="cx">
+                                <select lay-filter="aihao" id="cxs">
                                     <option value="0">车型</option>
                                 </select>
                             </div>
