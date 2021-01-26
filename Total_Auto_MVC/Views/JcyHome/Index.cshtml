@@ -8,6 +8,9 @@
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
 <title>天下车直卖网</title>
 <script>
+    var jg = 0;
+   
+ 
     $(function () {
         layui.use('form', function () {
             form = layui.form;
@@ -34,6 +37,17 @@
         ShowCardsInfo();
         ShowPrice();
         ShowBSX();
+        Showcxs();
+        Showlcs();
+        Showpls();
+        Showpfs();
+        Showzws();
+        Showrys();
+        Showcolors();
+        ShowDriveType();
+        ShowCarNum();
+        ShowCountryb();
+        ShowLight();
     })
     //车系列表根据品牌id
     function ShowCX(id) {
@@ -42,6 +56,7 @@
             data: { id: id },
             dataType: "json",
             Type: "get",
+            async:false,
             success: function (data) {
                 console.log(data);
                 $("#cx").empty();
@@ -100,6 +115,7 @@
             async: false,
             success: function (data) {
                 $("#bsx").empty();
+                $("#bsx").append("<option value='0'>变速箱</option>");
                 $(data).each(function () {
                     $("#bsx").append("<option value=" + this.gearboxId + " style='color:black;'>" + this.gearboxName + "</option>");
                 })
@@ -112,12 +128,12 @@
             url: "http://localhost:11267/api/JcyCards/CarsVisonList",
             dataType: "json",
             type: "get",
+            data: {},
             async: false,
             success: function (data) {
-                console.log(data);
-                $("#cxs").empty();
+                $("#cxs").append("<option value='0'>车系</option>");
                 $(data).each(function () {
-                    $("#cxs").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#cxs").append("<option value=" + this.carsVisonId + ">" + this.carsVisonName + "</option>");
                 })
             }
         })
@@ -131,9 +147,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#lc").empty();
+                $("#lc").append("<option value='0'>里程</option>");
                 $(data).each(function () {
-                    $("#lc").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#lc").append("<option value=" + this.mileageId + ">" + this.mileageName + "</option>");
                 })
             }
         })
@@ -147,9 +163,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#pl").empty();
+                $("#pl").append("<option value='0'>排量</option>");
                 $(data).each(function () {
-                    $("#pl").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#pl").append("<option value=" + this.displacementId + ">" + this.displacementName + "</option>");
                 })
             }
         })
@@ -163,9 +179,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#pfbz").empty();
+                $("#pfbz").append("<option value='0'>排放标准</option>");
                 $(data).each(function () {
-                    $("#pfbz").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#pfbz").append("<option value=" + this.disId + ">" + this.disName + "</option>");
                 })
             }
         })
@@ -179,7 +195,7 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#zws").empty();
+                $("#zws").append("<option value='0'>座位数</option>");
                 $(data).each(function () {
                     $("#zws").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
                 })
@@ -195,9 +211,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#ry").empty();
+                $("#ry").append("<option value='0'>燃油类型</option>");
                 $(data).each(function () {
-                    $("#ry").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#ry").append("<option value=" + this.fuelTypeId + ">" + this.fuelTypeName + "</option>");
                 })
             }
         })
@@ -211,9 +227,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#colors").empty();
+                $("#color").append("<option value='0'>颜色</option>");
                 $(data).each(function () {
-                    $("#colors").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#colors").append("<option value=" + this.colorId + ">" + this.colorName + "</option>");
                 })
             }
         })
@@ -226,10 +242,9 @@
             type: "get",
             async: false,
             success: function (data) {
-                console.log(data);
-                $("#cp").empty();
+                $("#cp").append("<option value='0'>车牌所在地</option>");
                 $(data).each(function () {
-                    $("#cp").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#cp").append("<option value=" + this.carnumId + ">" + this.carnumName + "</option>");
                 })
             }
         })
@@ -242,10 +257,9 @@
             type: "get",
             async: false,
             success: function (data) {
-                console.log(data);
-                $("#qdlx").empty();
+                $("#qdlx").append("<option value='0'>驱动类型</option>");
                 $(data).each(function () {
-                    $("#qdlx").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#qdlx").append("<option value=" + this.driveTypeId + ">" + this.driveTypeName + "</option>");
                 })
             }
         })
@@ -259,9 +273,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#gb").empty();
+                $("#gb").append("<option value='0'>国别</option>");
                 $(data).each(function () {
-                    $("#gb").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#gb").append("<option value=" + this.countryDisId + ">" + this.countryDisName + "</option>");
                 })
             }
         })
@@ -275,9 +289,9 @@
             async: false,
             success: function (data) {
                 console.log(data);
-                $("#ld").empty();
+                $("#ld").append("<option value='0'>亮点配置</option>");
                 $(data).each(function () {
-                    $("#ld").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                    $("#ld").append("<option value=" + this.configId + ">" + this.configName + "</option>");
                 })
             }
         })
@@ -309,10 +323,9 @@
             success: function (data) {
                 console.log(data);
                 $(data).each(function () {
-                    var priceid = this.priceId;
                     var cxinfo =
                         "<li class='layui-nav-item' > " +
-                        "<a href='#' style='color:black' onclick='ShowCardsInfo(" + priceid + ")'>" + this.priceName + "</a></li>";
+                        "<a href='#' style='color:black' onclick='ShowCardsInfo(" + this.priceId + ")'>" + this.priceName + "</a></li>";
                     $("#prices").append(cxinfo);
                 })
                 var strs = "<li class='layui-nav-item' style=''>" +
@@ -328,13 +341,13 @@
         location.href = "/JcyHome/ShowCard?id=" + id;
     }
     //查询车辆以及信息显示
-    function ShowCardsInfo(brandid, carserId, priceid) {
+    function ShowCardsInfo(brandid, carserId,priceid) {
         var name = $("#name").val();
         $.ajax({
             url: "http://localhost:11267/api/JcyCards/CardInfoCofigList",
             dataType: "json",
             type: "get",
-            data: { name: name, brandId: brandid, CardId: carserId, priceId: priceid, agecard: 0, bsx: 0, cx: 0, kms: 0, pl: 0, pfbz: 0, zws: 0, rylx: 0, color: 0, cardszd: 0, qdlx: 0, countryb: 0, lightCoig: 0 },
+            data: { name: name, jg: jg, brandId: brandid, CardId: carserId, priceId: priceid, agecard: 0, bsx: 0, cx: 0, kms: 0, pl: 0, pfbz: 0, zws: 0, rylx: 0, color: 0, cardszd: 0, qdlx: 0, countryb: 0, lightCoig: 0 },
             success: function (data) {
                 console.log(data);
                 $(".car").empty();
@@ -350,6 +363,19 @@
                 })
             }
         })
+    }
+
+    function jg() {
+        jg = 1;
+        ShowCardsInfo();
+    }
+    function chel() {
+        jg = 2;
+        ShowCardsInfo();
+    }
+    function lic() {
+        jg = 3;
+        ShowCardsInfo();
     }
 </script>
 <div style="margin-left:360px;">
@@ -419,6 +445,11 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="cl" style="color:black;">
                                     <option value="0">车龄</option>
+                                    <option value="1">1年以内</option>
+                                    <option value="2">3年以内</option>
+                                    <option value="3">5年以内</option>
+                                    <option value="4">8年以内</option>
+                                    <option value="5">8年以上</option>
                                 </select>
                             </div>
                         </div>
@@ -441,6 +472,13 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="cxs" style="color:black;">
                                     <option value="0">车型</option>
+                                    <option value="1">两厢轿车</option>
+                                    <option value="2">三厢轿车</option>
+                                    <option value="3">跑车轿车</option>
+                                    <option value="4">SUV</option>
+                                    <option value="5">MPV</option>
+                                    <option value="6">面包车</option>
+                                    <option value="7">皮卡</option>
                                 </select>
                             </div>
                         </div>
@@ -452,6 +490,12 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="lc" style="color:black;">
                                     <option value="0">里程</option>
+                                    <option value="1">1万公里内</option>
+                                    <option value="2">3万公里内</option>
+                                    <option value="3">5万公里内</option>
+                                    <option value="4">8万公里内</option>
+                                    <option value="5">10万公里内</option>
+                                    <option value="6">10万公里以上</option>
                                 </select>
                             </div>
                         </div>
@@ -463,6 +507,12 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="pl" style="color:black;">
                                     <option value="0">排量</option>
+                                    <option value="1">1.0L以下</option>
+                                    <option value="2">1.0-1.6L</option>
+                                    <option value="3">1.6-2.0L</option>
+                                    <option value="4">2.0-3.0L</option>
+                                    <option value="5">3.0-4.0L</option>
+                                    <option value="6">4.0L以上</option>
                                 </select>
                             </div>
                         </div>
@@ -474,6 +524,9 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="pfbz" style="color:black;">
                                     <option value="0">排放标准</option>
+                                    <option value="1">国四</option>
+                                    <option value="2">国五</option>
+                                    <option value="3">国六</option>
                                 </select>
                             </div>
                         </div>
@@ -485,6 +538,11 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="zws" style="color:black;">
                                     <option value="0">座位数</option>
+                                    <option value="1">2座</option>
+                                    <option value="2">4座</option>
+                                    <option value="3">5座</option>
+                                    <option value="4">6座</option>
+                                    <option value="5">7座及以上</option>
                                 </select>
                             </div>
                         </div>
@@ -496,6 +554,11 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="ry" style="color:black;">
                                     <option value="0">燃油类型</option>
+                                    <option value="1">汽油</option>
+                                    <option value="2">柴油</option>
+                                    <option value="3">电动</option>
+                                    <option value="4">油电混合</option>
+                                    <option value="5">其他</option>
                                 </select>
                             </div>
                         </div>
@@ -507,6 +570,20 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="colors" style="color:black;">
                                     <option value="0">颜色</option>
+                                    <option value="1">白灰色</option>
+                                    <option value="2">深灰色</option>
+                                    <option value="3">橙色</option>
+                                    <option value="4">蓝色</option>
+                                    <option value="5">紫色</option>
+                                    <option value="6">多彩色</option>
+                                    <option value="7">黑色</option>
+                                    <option value="8">银灰色</option>
+                                    <option value="9">红色</option>
+                                    <option value="10">绿色</option>
+                                    <option value="11">咖啡色</option>
+                                    <option value="12">香槟色</option>
+                                    <option value="13">黄色</option>
+                                    <option value="14">其他</option>
                                 </select>
                             </div>
                         </div>
@@ -518,6 +595,8 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="cp" style="color:black;">
                                     <option value="0">车牌所在地</option>
+                                    <option value="1">本地</option>
+                                    <option value="2">外地</option>
                                 </select>
                             </div>
                         </div>
@@ -529,6 +608,8 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="qdlx" style="color:black;">
                                     <option value="0">驱动类型</option>
+                                    <option value="1">两驱</option>
+                                    <option value="2">四驱</option>
                                 </select>
                             </div>
                         </div>
@@ -540,6 +621,13 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="gb" style="color:black;">
                                     <option value="0">国别</option>
+                                    <option value="1">德系</option>
+                                    <option value="2">日系</option>
+                                    <option value="3">美系</option>
+                                    <option value="4">法系</option>
+                                    <option value="5">韩系</option>
+                                    <option value="6">国系</option>
+                                    <option value="7">其他</option>
                                 </select>
                             </div>
                         </div>
@@ -551,6 +639,14 @@
                             <div style="width:120px">
                                 <select lay-filter="aihao" id="ld" style="color:black;">
                                     <option value="0">亮点配置</option>
+                                    <option value="1">全景天窗</option>
+                                    <option value="2">车身稳定控制</option>
+                                    <option value="3">倒车影像系统</option>
+                                    <option value="4">真皮座椅</option>
+                                    <option value="5">无钥匙进入系统</option>
+                                    <option value="6">儿童座椅接口</option>
+                                    <option value="7">倒车雷达</option>
+                                    <option value="8">GPS导航</option>
                                 </select>
                             </div>
                         </div>
@@ -583,15 +679,15 @@
         <div style="float:left;width:700px;height:57px;margin-top:15px;margin-left:330px;">
             <a href="#">默认排序</a>|
             <a href="#">最新发布</a>|
-            <a href="#">
+            <a href="#" onclick="jg()">
                 价格
                 <img src="~/homePhone/zx.png" />
             </a>|
-            <a href="#">
+            <a href="#" onclick="chel()">
                 车龄
                 <img src="~/homePhone/zx.png" />
             </a>|
-            <a href="#">
+            <a href="#" onclick="lic()">
                 里程
                 <img src="~/homePhone/zx.png" />
             </a>

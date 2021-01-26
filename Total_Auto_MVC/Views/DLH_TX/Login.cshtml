@@ -349,6 +349,7 @@
                     document.cookie ="UsarPhone=" + data.userPhone;
                     document.cookie = "UserPwd=" + data.userPwd;
                     document.cookie = "UserName=" + data.userName;
+                    var name = sessionStorage.setItem("name", data.userName);
                     location.href = "/Hzx/Index";
                 }
                 else {

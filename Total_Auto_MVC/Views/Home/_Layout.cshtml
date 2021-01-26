@@ -12,11 +12,9 @@
         <div style="width:75%;float:right;">
             <ul class="layui-nav" lay-filter="" style="background-color: #fcfcfc">
                 <li class="layui-nav-item"><a href="" style="color:black"><img src="~/images/QQ图片20210111103405.png" id="imgss" /></a></li>
-                <li class="layui-nav-item"><a href="" style="color:black">欢迎登录:???</a></li>
-                <li class="layui-nav-item"><a href="javascript:location.href='/Hzx/Index" style="color:black">首页</a></li>
-                <li class="layui-nav-item"><a href="javascript:location.href='/JcyHome/Index" style="color:black">我要买车</a></li>
-                <li class="layui-nav-item"><a href="" style="color:black">找客服</a></li>
-                <li class="layui-nav-item" ><a href="" style="color:black">我要卖车</a></li>
+                <li class="layui-nav-item"><a href="" style="color:black">欢迎登录:<span id="hsp"></span></a></li>
+                <li class="layui-nav-item"><a href="javascript:location.href='/Hzx/Index'" style="color:black">首页</a></li>
+                <li class="layui-nav-item"><a href="javascript:location.href='/JcyHome/Index'" style="color:black">我要买车</a></li>
                 <li class="layui-nav-item" id="mziche"><a href="javascript:location.href='/ZHQ_GJ/GJ'" style="color:black">我要估价</a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">我的订单</a></li>
                 <li class="layui-nav-item"><a href="" style="color:black">热线电话:400-069-6540</a></li>
@@ -40,7 +38,8 @@
     //注意：导航 依赖 element 模块，否则无法进行功能性操作
     layui.use('element', function () {
         var element = layui.element;
-       
+        var name = sessionStorage.getItem("name");
+        $("#hsp").text(name);
         //…
     });
 </script>
