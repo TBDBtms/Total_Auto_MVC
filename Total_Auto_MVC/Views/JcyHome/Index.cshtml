@@ -6,6 +6,7 @@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/layui-v2.4.5/layui/layui.js"></script>
 <link href="~/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+<title>天下车直卖网</title>
 <script>
     $(function () {
         layui.use('form', function () {
@@ -32,6 +33,7 @@
         ShowCardTypeInfos();
         ShowCardsInfo();
         ShowPrice();
+        ShowBSX();
     })
     //车系列表根据品牌id
     function ShowCX(id) {
@@ -83,8 +85,199 @@
                     var brandid = this.brandId;
                     var htmls =
                         "<li class='layui-nav-item'>" +
-                        "<a href='#' style='color:black' id='a' onclick='ShowCX(" + brandid + ")'>" + this.brandName + "</a></li>";
+                        "<a href='#' style='color:black' id='a' onclick='ShowCardsInfo(" + brandid + ")'>" + this.brandName + "</a></li>";
                     $("#pp").append(htmls);
+                })
+            }
+        })
+    }
+    //变速箱
+    function ShowBSX() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/GearboxList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                $("#bsx").empty();
+                $(data).each(function () {
+                    $("#bsx").append("<option value=" + this.gearboxId + " style='color:black;'>" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //车系
+    function Showcxs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarsVisonList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#cxs").empty();
+                $(data).each(function () {
+                    $("#cxs").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //里程
+    function Showlcs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/MileageList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#lc").empty();
+                $(data).each(function () {
+                    $("#lc").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //排量
+    function Showpls() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/MileageList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#pl").empty();
+                $(data).each(function () {
+                    $("#pl").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //排放
+    function Showpfs() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/DischargenormList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#pfbz").empty();
+                $(data).each(function () {
+                    $("#pfbz").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //座位数
+    function Showzws() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/SeatnumList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#zws").empty();
+                $(data).each(function () {
+                    $("#zws").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //燃油类型
+    function Showrys() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/FuelTypeList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#ry").empty();
+                $(data).each(function () {
+                    $("#ry").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //颜色
+    function Showcolors() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/ColorsList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#colors").empty();
+                $(data).each(function () {
+                    $("#colors").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //车牌所在地
+    function ShowCarNum() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CarnumlocationList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#cp").empty();
+                $(data).each(function () {
+                    $("#cp").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //驱动类型
+    function ShowDriveType() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/DriveTypeList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#qdlx").empty();
+                $(data).each(function () {
+                    $("#qdlx").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //国别
+    function ShowCountryb() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/CountryDistinctList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#gb").empty();
+                $(data).each(function () {
+                    $("#gb").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
+                })
+            }
+        })
+    }
+    //亮点配置
+    function ShowLight() {
+        $.ajax({
+            url: "http://localhost:11267/api/JcyCards/BrightConfigList",
+            dataType: "json",
+            type: "get",
+            async: false,
+            success: function (data) {
+                console.log(data);
+                $("#ld").empty();
+                $(data).each(function () {
+                    $("#ld").append("<option value=" + this.gearboxId + ">" + this.gearboxName + "</option>");
                 })
             }
         })
@@ -107,7 +300,7 @@
             }
         })
     }
-    //价格查询 
+    //价格查询
     function ShowPrice() {
         $.ajax({
             url: "http://localhost:11267/api/JcyCards/GetPrices",
@@ -148,7 +341,7 @@
                 $(data).each(function (data) {
                     var card =
                         "<div style='width: 310px; height: 307px; float: left; margin - left: 5px; margin - top: 5px;'>" +
-                        "<div onclick='ShowCard("+this.cardId+")'><a href='#'><img src ='" + this.photoCar + "' style='width:300px;height:220px;' /></a></div>" +
+                        "<div onclick='ShowCard(" + this.cardId + ")'><a href='#'><img src ='" + this.photoCar + "' style='width:300px;height:220px;' /></a></div>" +
                         "<div>" + this.cardName + "</div>" +
                         "<div>" + this.yearAge + "年|" + this.kmNum + "万公里|" + this.cardHelp + "</div>" +
                         "<div>" + this.price + "万" + "</div>" +
@@ -224,7 +417,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:25px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="cl">
+                                <select lay-filter="aihao" id="cl" style="color:black;">
                                     <option value="0">车龄</option>
                                 </select>
                             </div>
@@ -235,7 +428,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="bsx">
+                                <select lay-filter="aihao" id="bsx" style="color:black;">
                                     <option value="0">变速箱</option>
                                 </select>
                             </div>
@@ -246,7 +439,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="cx">
+                                <select lay-filter="aihao" id="cxs" style="color:black;">
                                     <option value="0">车型</option>
                                 </select>
                             </div>
@@ -257,7 +450,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="lc">
+                                <select lay-filter="aihao" id="lc" style="color:black;">
                                     <option value="0">里程</option>
                                 </select>
                             </div>
@@ -268,7 +461,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="pl">
+                                <select lay-filter="aihao" id="pl" style="color:black;">
                                     <option value="0">排量</option>
                                 </select>
                             </div>
@@ -279,7 +472,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="pfbz">
+                                <select lay-filter="aihao" id="pfbz" style="color:black;">
                                     <option value="0">排放标准</option>
                                 </select>
                             </div>
@@ -290,7 +483,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="zws">
+                                <select lay-filter="aihao" id="zws" style="color:black;">
                                     <option value="0">座位数</option>
                                 </select>
                             </div>
@@ -301,7 +494,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="ry">
+                                <select lay-filter="aihao" id="ry" style="color:black;">
                                     <option value="0">燃油类型</option>
                                 </select>
                             </div>
@@ -312,7 +505,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:53px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="colors">
+                                <select lay-filter="aihao" id="colors" style="color:black;">
                                     <option value="0">颜色</option>
                                 </select>
                             </div>
@@ -323,7 +516,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="cp">
+                                <select lay-filter="aihao" id="cp" style="color:black;">
                                     <option value="0">车牌所在地</option>
                                 </select>
                             </div>
@@ -334,7 +527,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="qdlx">
+                                <select lay-filter="aihao" id="qdlx" style="color:black;">
                                     <option value="0">驱动类型</option>
                                 </select>
                             </div>
@@ -345,7 +538,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="gb">
+                                <select lay-filter="aihao" id="gb" style="color:black;">
                                     <option value="0">国别</option>
                                 </select>
                             </div>
@@ -356,7 +549,7 @@
                     <form class="layui-form">
                         <div class="layui-form-item" style="float:left;margin-left:5px;margin-top:10px;">
                             <div style="width:120px">
-                                <select lay-filter="aihao" id="ld">
+                                <select lay-filter="aihao" id="ld" style="color:black;">
                                     <option value="0">亮点配置</option>
                                 </select>
                             </div>
@@ -409,6 +602,5 @@
     </div>
     <div style="width:100%;" class="car">
 
-            </div>
     </div>
-
+</div>
